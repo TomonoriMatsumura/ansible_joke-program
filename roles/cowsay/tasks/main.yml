@@ -1,18 +1,19 @@
-- name: check cowsay is installed
+- name: check if cowsay command exits
   command: cowsay -l
   register: 
-    COWSAY_INSTALLED_VARS
-  failed_when:
-    COWSAY_INSTALLED_VARS.rc not in [0, 1]
-  changed_when: false
+    CHECK_EXITS
+  ignore_errors: yes
 
-- name: install unzip
+- debug: 
+    var: CHECK_EXITS
+
+- name: install unzip with yum
   become: yes
   yum:
     name: unzip
     state: present
   when:
-    COWSAY_INSTALLED_VARS.rc == 1
+    CHECK_EXITS.rc == 2
 
 - name: download cowsay.zip from github.com 
   become: yes
@@ -20,7 +21,7 @@
     url: https://github.com/schacon/cowsay/archive/master.zip
     dest: /tmp
   when:
-    COWSAY_INSTALLED_VARS.rc == 1
+    CHECK_EXITS.rc == 2
 
 - name: unzip cowsay.zip
   become: yes
@@ -28,7 +29,7 @@
     src: /tmp/cowsay-master.zip
     dest: /tmp
   when:
-    COWSAY_INSTALLED_VARS.rc == 1
+    CHECK_EXITS.rc == 2
 
 - name: install cowsay
   become: yes
@@ -36,10 +37,10 @@
   args:
     chdir: /tmp/cowsay-master
   when:
-    COWSAY_INSTALLED_VARS.rc == 1
+    CHECK_EXITS.rc == 2
 
 - name: test cowsay command
-  shell:
+  command:
      cowsay hello
   register: RESULT
 
