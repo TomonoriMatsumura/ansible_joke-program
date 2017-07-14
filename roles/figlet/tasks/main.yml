@@ -1,0 +1,5 @@
+- name: install figlet 
+  become: yes
+  yum:
+    name: figlet
+    state: present

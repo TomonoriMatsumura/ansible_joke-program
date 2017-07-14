@@ -1,0 +1,30 @@
+- hosts: all
+  become: yes
+
+  roles:
+    - role: fortune-mod
+      tags: fortune-mod
+    - role: cowsay
+      tags: cowsay
+    - role: figlet
+      tags: figlet
+    - role: sl
+      tags: sl
+    - role: lolcat
+      tags: lolcat
+    - role: asciiquarium
+      tags: asciiquarium
+    - role: cmatrix
+      tags: cmatrix
+    - role: ponysay
+      tags: ponysay
+    - role: pockemonsay
+      tags: pockemonsay
+    - role: pong
+      tags: pong
+    - role: beer-mug
+      tags: beer-mug
+    - role: nyancat
+      tags: nyancat
+    - role: cureutils
+      tags: cureutils

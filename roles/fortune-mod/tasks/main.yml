@@ -1,0 +1,5 @@
+- name: install fortune-mod
+  become: yes
+  yum:
+    name: fortune-mod
+    state: latest

@@ -1,0 +1,5 @@
+- name: install sl 
+  become: yes
+  yum:
+    name: sl 
+    state: present
