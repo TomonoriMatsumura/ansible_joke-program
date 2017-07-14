@@ -1,23 +1,50 @@
+- name: check cowsay is installed
+  shell: cowsay
+  register: 
+    COWSAY_INSTALLED_VARS
+  failed_when:
+    COWSAY_INSTALLED_VARS.rc not in [0, 1]
+  changed_when: false
+
 - name: install unzip
   become: yes
   yum:
     name: unzip
     state: present
+  when:
+    COWSAY_INSTALLED_VARS.rc == 1
 
 - name: download cowsay.zip from github.com 
   become: yes
   get_url:
     url: https://github.com/schacon/cowsay/archive/master.zip
     dest: /tmp
+  when:
+    COWSAY_INSTALLED_VARS.rc == 1
 
 - name: unzip cowsay.zip
   become: yes
-  shell: unzip /tmp/cowsay-master.zip
-  args:
-    chdir: /tmp
+  unarchive:
+    src: /tmp/cowsay-master.zip
+    dest: /tmp
+  when:
+    COWSAY_INSTALLED_VARS.rc == 1
 
 - name: install cowsay
   become: yes
   shell: ./install.sh
   args:
     chdir: /tmp/cowsay-master
+  when:
+    COWSAY_INSTALLED_VARS.rc == 1
+
+- name: test cowsay command
+  become: yes
+  shell:
+     cowsay hello
+#    cowsay -l | grep -v "^Cow" | sed -e "s% %\n%g" | sed -e "s%\(.*\)%cowsay -f \1 Now I am a \1%" | sh
+  register: RESULT
+
+- name: displah cowsay command test result
+  become: yes
+  debug: var=RESULT.stdout_lines
