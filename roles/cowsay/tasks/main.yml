@@ -1,5 +1,5 @@
 - name: check cowsay is installed
-  shell: cowsay
+  command: cowsay -l
   register: 
     COWSAY_INSTALLED_VARS
   failed_when:
@@ -39,12 +39,9 @@
     COWSAY_INSTALLED_VARS.rc == 1
 
 - name: test cowsay command
-  become: yes
   shell:
      cowsay hello
-#    cowsay -l | grep -v "^Cow" | sed -e "s% %\n%g" | sed -e "s%\(.*\)%cowsay -f \1 Now I am a \1%" | sh
   register: RESULT
 
-- name: displah cowsay command test result
-  become: yes
+- name: display cowsay command test result
   debug: var=RESULT.stdout_lines
