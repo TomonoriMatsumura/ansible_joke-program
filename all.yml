@@ -4,12 +4,14 @@
   roles:
     - role: fortune-mod
       tags: fortune-mod
-    - role: cowsay
-      tags: cowsay
     - role: figlet
       tags: figlet
     - role: sl
       tags: sl
+    - role: pong
+      tags: pong
+    - role: cowsay
+      tags: cowsay
 #    - role: lolcat
 #      tags: lolcat
 #    - role: asciiquarium
@@ -20,8 +22,6 @@
 #      tags: ponysay
 #    - role: pockemonsay
 #      tags: pockemonsay
-#    - role: pong
-#      tags: pong
 #    - role: beer-mug
 #      tags: beer-mug
 #    - role: nyancat

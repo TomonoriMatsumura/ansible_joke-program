@@ -13,7 +13,7 @@
     name: unzip
     state: present
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXITS.rc == 1
 
 - name: download pong-command.zip from github.com 
   become: yes
@@ -21,7 +21,7 @@
     url: '{{ pong_command_download_url }}' 
     dest: /tmp
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXITS.rc == 1
 
 - name: unzip pong-command.zip
   become: yes
@@ -29,7 +29,7 @@
     src: /tmp/linux_amd64.zip
     dest: /tmp
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXITS.rc == 1
 
 - name: install pong-command
   become: yes
@@ -37,4 +37,4 @@
   args:
     chdir: /tmp
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXITS.rc == 1
