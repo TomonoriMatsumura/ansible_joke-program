@@ -1,0 +1,6 @@
+- hosts: all
+  vars_files:
+    - vars/pong/default.yml
+
+  roles:
+    - pong 
