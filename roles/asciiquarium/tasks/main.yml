@@ -28,10 +28,13 @@
     name: perl-CPAN
     state: present 
 
-- name: install cpan Term::Animation
+- name: install cpan local::lib with cpan
   become: yes
-  cpanm:
-    name: Term::Animation
+  command: cpan install local::lib
+
+- name: install cpan Term::Animation with cpan
+  become: yes
+  command: cpan install Term::Animation
 
 #- name: download Term-Animation archive file from cpan.org
 #  become: yes
