@@ -1,3 +1,9 @@
+- name: install ncurses-devel with yum
+  become: yes
+  yum:
+    name: ncurses-devel
+    state: present
+
 - name: install perl-Curses with yum
   become: yes
   yum:
