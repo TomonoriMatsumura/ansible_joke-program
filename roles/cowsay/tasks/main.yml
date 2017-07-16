@@ -1,11 +1,8 @@
-- name: check if cowsay command exits
+- name: check if cowsay command exists
   command: cowsay -l
   register: 
-    CHECK_EXITS
+    CHECK_EXISTS
   ignore_errors: yes
-
-- debug: 
-    var: CHECK_EXITS
 
 - name: install unzip with yum
   become: yes
@@ -13,7 +10,7 @@
     name: unzip
     state: present
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXISTS.rc == 2
 
 - name: download cowsay.zip from github.com 
   become: yes
@@ -21,7 +18,7 @@
     url: https://github.com/schacon/cowsay/archive/master.zip
     dest: /tmp
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXISTS.rc == 2
 
 - name: unzip cowsay.zip
   become: yes
@@ -29,7 +26,7 @@
     src: /tmp/cowsay-master.zip
     dest: /tmp
   when:
-    CHECK_EXITS.rc == 2
+    CHECK_EXISTS.rc == 2
 
 - name: install cowsay
   become: yes
@@ -37,12 +34,4 @@
   args:
     chdir: /tmp/cowsay-master
   when:
-    CHECK_EXITS.rc == 2
-
-- name: test cowsay command
-  command:
-     cowsay hello
-  register: RESULT
-
-- name: display cowsay command test result
-  debug: var=RESULT.stdout_lines
+    CHECK_EXISTS.rc == 2
