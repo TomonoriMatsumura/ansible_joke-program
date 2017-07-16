@@ -13,7 +13,7 @@
 - name: unarchive Term-Animation archive file
   become: yes
   unarchive:
-    src: '{{ term_animation_archive file }}'
+    src: "/tmp/{{ term_animation_archive_file }}"
     dest: /tmp
 
 - name: download asciiquarium archive file
@@ -25,5 +25,5 @@
 - name: unarchive asciiquarium archive file
   become: yes
   unarchive:
-    src: '{{ asciiquarium_archive file }}'
+    src: "/tmp/{{ asciiquarium_archive_file }}"
     dest: /tmp

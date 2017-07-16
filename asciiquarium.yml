@@ -1,4 +1,6 @@
 - hosts: all
+  vars_files:
+    - vars/asciiquarium/default.yml
 
   roles:
     - asciiquarium 
