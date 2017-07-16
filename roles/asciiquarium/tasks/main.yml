@@ -50,7 +50,7 @@
 
 - name: add asciiquarium command on system
   become: yes
-  command: mv /tmp/{{ asciiquraium_dir }}/asciiquarium /usr/local/bin/
+  command: mv /tmp/{{ asciiquarium_dir }}/asciiquarium /usr/local/bin/
 
 - name: assign excute permission to asciiquarium command
   become: yes

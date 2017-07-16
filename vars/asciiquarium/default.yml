@@ -1,9 +1,5 @@
-term_animation_download_url: http://www.cpan.org/authors/id/K/KB/KBAUCOM/Term-Animation-2.6.tar.gz 
-
-term_animation_archive_file: Term-Animation-2.6.tar.gz 
-
-
 asciiquarium_download_url: http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
 
 asciiquarium_archive_file: asciiquarium.tar.gz
 
+asciiquarium_dir: asciiquarium_1.1
