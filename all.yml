@@ -16,8 +16,8 @@
       tags: cowsay
     - role: lolcat
       tags: lolcat
-#    - role: asciiquarium
-#      tags: asciiquarium
+    - role: asciiquarium
+      tags: asciiquarium
 #    - role: cmatrix
 #      tags: cmatrix
 #    - role: ponysay

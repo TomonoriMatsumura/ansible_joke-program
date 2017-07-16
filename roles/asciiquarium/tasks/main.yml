@@ -1,0 +1,29 @@
+- name: install perl-Curses with yum
+  become: yes
+  yum:
+    name: perl-Curses
+    state: present
+
+- name: download Term-Animation archive file from cpan.org
+  become: yes
+  get_url:
+    url: '{{ term_animation_download_url }}' 
+    dest: /tmp
+
+- name: unarchive Term-Animation archive file
+  become: yes
+  unarchive:
+    src: '{{ term_animation_archive file }}'
+    dest: /tmp
+
+- name: download asciiquarium archive file
+  become: yes
+  get_url:
+    url: '{{ asciiquarium_download_url }}' 
+    dest: /tmp
+
+- name: unarchive asciiquarium archive file
+  become: yes
+  unarchive:
+    src: '{{ asciiquarium_archive file }}'
+    dest: /tmp
