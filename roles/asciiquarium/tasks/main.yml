@@ -36,18 +36,6 @@
   become: yes
   command: cpan install Term::Animation
 
-#- name: download Term-Animation archive file from cpan.org
-#  become: yes
-#  get_url:
-#    url: '{{ term_animation_download_url }}' 
-#    dest: /tmp
-
-#- name: unarchive Term-Animation archive file
-#  become: yes
-#  unarchive:
-#    src: "/tmp/{{ term_animation_archive_file }}"
-#    dest: /tmp
-
 - name: download asciiquarium archive file
   become: yes
   get_url:
@@ -59,3 +47,13 @@
   unarchive:
     src: "/tmp/{{ asciiquarium_archive_file }}"
     dest: /tmp
+
+- name: add asciiquarium command on system
+  become: yes
+  command: mv /tmp/{{ asciiquraium_dir }}/asciiquarium /usr/local/bin/
+
+- name: assign excute permission to asciiquarium command
+  become: yes
+  file:
+    path: /usr/local/bin/asciiquarium
+    mode: 0755
