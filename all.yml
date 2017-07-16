@@ -14,8 +14,8 @@
       tags: pong
     - role: cowsay
       tags: cowsay
-#    - role: lolcat
-#      tags: lolcat
+    - role: lolcat
+      tags: lolcat
 #    - role: asciiquarium
 #      tags: asciiquarium
 #    - role: cmatrix
