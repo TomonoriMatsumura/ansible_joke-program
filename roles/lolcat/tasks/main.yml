@@ -1,7 +1,7 @@
-- name: check if cowsay command exists
-  command: ruby 
+- name: check if ruby command exists
+  command: ruby -v
   register: 
-    CHECK_EXISTS
+    CHECK_RUBY_EXISTS
   ignore_errors: yes
 
 - name: install ruby with yum
@@ -10,8 +10,16 @@
     name: ruby
     state: present
   when:
-    CHECK_EXISTS.rc == 2
+    CHECK_RUBY_EXISTS.rc == 2
+
+- name: check if lolcat command exists
+  command: lolcat -v
+  register:
+    CHECK_LOLCAT_EXISTS
+  ignore_errors: yes
 
 - name: install lolcat 
   become: yes
   shell: gem install lolcat
+  when:
+    CEHCK_LOLCAT_EXISTS.rc == 2
