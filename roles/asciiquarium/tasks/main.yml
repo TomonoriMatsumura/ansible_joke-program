@@ -1,3 +1,15 @@
+- name: install Development Tools with yum
+  become: yes
+  yum:
+    name: '@Development Tools'
+    state: present
+
+- name: install libyaml with yum
+  become: yes
+  yum:
+    name: libyaml-devel
+    state: present
+
 - name: install ncurses-devel with yum
   become: yes
   yum:
@@ -10,17 +22,28 @@
     name: perl-Curses
     state: present
 
-- name: download Term-Animation archive file from cpan.org
+- name: install perl-CPAN with yum
   become: yes
-  get_url:
-    url: '{{ term_animation_download_url }}' 
-    dest: /tmp
+  yum:
+    name: perl-CPAN
+    state: present 
 
-- name: unarchive Term-Animation archive file
+- name: install cpan Term::Animation
   become: yes
-  unarchive:
-    src: "/tmp/{{ term_animation_archive_file }}"
-    dest: /tmp
+  cpanm:
+    name: Term::Animation
+
+#- name: download Term-Animation archive file from cpan.org
+#  become: yes
+#  get_url:
+#    url: '{{ term_animation_download_url }}' 
+#    dest: /tmp
+
+#- name: unarchive Term-Animation archive file
+#  become: yes
+#  unarchive:
+#    src: "/tmp/{{ term_animation_archive_file }}"
+#    dest: /tmp
 
 - name: download asciiquarium archive file
   become: yes
