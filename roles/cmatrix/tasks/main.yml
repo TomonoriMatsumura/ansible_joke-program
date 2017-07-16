@@ -1,0 +1,47 @@
+- name: install Development Tools with yum
+  become: yes
+  yum:
+    name: '@Development Tools'
+    state: present
+
+- name: install libyaml with yum
+  become: yes
+  yum:
+    name: libyaml-devel
+    state: present
+
+- name: install ncurses-devel with yum
+  become: yes
+  yum:
+    name: ncurses-devel
+    state: present
+
+- name: download cmatrix archive file
+  become: yes
+  get_url:
+    url: '{{ cmatrix_download_url }}' 
+    dest: /tmp
+
+- name: unarchive cmatrix archive file
+  become: yes
+  unarchive:
+    src: "/tmp/{{ cmatrix_archive_file }}"
+    dest: /tmp
+
+- name: install cmatrix command 1
+  become: yes
+  command: ./configure
+  args:
+    chdir: '/tmp/{{ cmatrix_dir }}'
+
+- name: install cmatrix command 2
+  become: yes
+  command: make
+  args:
+    chdir: '/tmp/{{ cmatrix_dir }}'
+
+- name: install cmatrix command 3
+  become: yes
+  command: make install
+  args:
+    chdir: '/tmp/{{ cmatrix_dir }}'

@@ -1,0 +1,6 @@
+- hosts: all
+  vars_files:
+    - vars/cmatrix/default.yml
+
+  roles:
+    - cmatrix 
