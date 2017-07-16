@@ -22,4 +22,4 @@
   become: yes
   shell: gem install lolcat
   when:
-    CEHCK_LOLCAT_EXISTS.rc == 2
+    CHECK_LOLCAT_EXISTS.rc == 2
