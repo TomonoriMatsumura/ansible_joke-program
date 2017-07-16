@@ -2,6 +2,8 @@
   become: yes
   vars_files:
     - vars/pong/default.yml
+    - vars/asciiquarium/default.yml
+    - vars/cmatrix/default.yml
 
   roles:
     - role: fortune-mod
@@ -18,8 +20,8 @@
       tags: lolcat
     - role: asciiquarium
       tags: asciiquarium
-#    - role: cmatrix
-#      tags: cmatrix
+    - role: cmatrix
+      tags: cmatrix
 #    - role: ponysay
 #      tags: ponysay
 #    - role: pockemonsay
