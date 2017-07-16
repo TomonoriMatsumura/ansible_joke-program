@@ -1,37 +1,5 @@
-- name: check if cowsay command exists
-  command: cowsay -l
-  register: 
-    CHECK_EXISTS
-  ignore_errors: yes
-
-- name: install unzip with yum
+- name: install cowsay with yum
   become: yes
   yum:
-    name: unzip
+    name: cowsay
     state: present
-  when:
-    CHECK_EXISTS.rc == 2
-
-- name: download cowsay.zip from github.com 
-  become: yes
-  get_url:
-    url: https://github.com/schacon/cowsay/archive/master.zip
-    dest: /tmp
-  when:
-    CHECK_EXISTS.rc == 2
-
-- name: unzip cowsay.zip
-  become: yes
-  unarchive:
-    src: /tmp/cowsay-master.zip
-    dest: /tmp
-  when:
-    CHECK_EXISTS.rc == 2
-
-- name: install cowsay
-  become: yes
-  shell: ./install.sh
-  args:
-    chdir: /tmp/cowsay-master
-  when:
-    CHECK_EXISTS.rc == 2
