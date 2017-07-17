@@ -1,0 +1,17 @@
+- name: install Golang with yum
+  become: yes
+  yum:
+    name: golang
+    state: present
+
+- name: set path of Golang
+  become: yes
+  command: export GOPATH="${HOME}/gocode"; export PATH="${PATH}:${GOPATH}/bin"; mkdir -p "${GOPATH}"
+
+- name: download beer-mug from github
+  become: yes
+  command: go get github.com/misoton665/beer-mug
+
+- name: install beer-mug
+  become: yes
+  command: go install github.com/misoton665/beer-mug

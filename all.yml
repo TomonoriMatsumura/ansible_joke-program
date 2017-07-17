@@ -26,8 +26,8 @@
 #      tags: ponysay
 #    - role: pockemonsay
 #      tags: pockemonsay
-#    - role: beer-mug
-#      tags: beer-mug
+    - role: beer-mug
+      tags: beer-mug
 #    - role: nyancat
 #      tags: nyancat
 #    - role: cureutils
