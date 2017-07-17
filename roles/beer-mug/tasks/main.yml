@@ -4,14 +4,21 @@
     name: golang
     state: present
 
-- name: set path of Golang
+- name: set path of Golang 1
   become: yes
-  command: export GOPATH="${HOME}/gocode"; export PATH="${PATH}:${GOPATH}/bin"; mkdir -p "${GOPATH}"
+  template:
+    src: go.sh
+    dest: /etc/profile.d/go.sh
+    force: no
+
+- name: set path of Golang 2
+  become: yes
+  shell: source /etc/profile.d/go.sh
 
 - name: download beer-mug from github
   become: yes
-  command: go get github.com/misoton665/beer-mug
+  shell: go get github.com/misoton665/beer-mug
 
 - name: install beer-mug
   become: yes
-  command: go install github.com/misoton665/beer-mug
+  shell: go install github.com/misoton665/beer-mug
