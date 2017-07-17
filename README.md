@@ -20,8 +20,10 @@ Program list
 
 1. install ansible 
 
+```
     sudo yum -y install epel-release
     sudo yum -y install ansible
+```
 
 2. excute playbook as root
 
