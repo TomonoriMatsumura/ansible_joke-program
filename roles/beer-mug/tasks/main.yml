@@ -18,7 +18,13 @@
 - name: download beer-mug from github
   become: yes
   shell: go get github.com/misoton665/beer-mug
+  environment:
+    GOPATH: /root/.go
+    PATH: "/root/.go/bin:{{ ansible_env.PATH }}"
 
 - name: install beer-mug
   become: yes
   shell: go install github.com/misoton665/beer-mug
+  environment:
+    GOPATH: /root/.go
+    PATH: "/root/.go/bin:{{ ansible_env.PATH }}"
