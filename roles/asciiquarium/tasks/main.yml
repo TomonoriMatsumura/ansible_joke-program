@@ -28,6 +28,10 @@
     name: perl-CPAN
     state: present 
 
+- name: install LWP and its missing dependencies to the '~/perl5' directory
+  become: yes
+  shell: perl -MCPAN -Mlocal::lib -e 'CPAN::install(LWP)'
+
 - name: install cpan local::lib with cpan
   become: yes
   command: cpan install local::lib
