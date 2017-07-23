@@ -1,25 +1,13 @@
-- name: check if ruby command exists
-  command: ruby -v
-  register: 
-    CHECK_RUBY_EXISTS
-  ignore_errors: yes
-
-- name: install ruby with yum
-  become: yes
-  yum:
-    name: ruby
-    state: present
-  when:
-    CHECK_RUBY_EXISTS.rc == 2
-
 - name: check if lolcat command exists
   command: lolcat -v
   register:
     CHECK_LOLCAT_EXISTS
-  ignore_errors: yes
+  failed_when:
+    CHECK_LOLCAT_EXITS.rc not in [0, 1]
+  changed_when: false 
 
 - name: install lolcat 
   become: yes
   shell: gem install lolcat
   when:
-    CHECK_LOLCAT_EXISTS.rc == 2
+    CHECK_LOLCAT_EXITS.rc not in [0, 1]
