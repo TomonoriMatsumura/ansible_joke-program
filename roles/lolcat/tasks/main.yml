@@ -2,9 +2,7 @@
   command: lolcat -v
   register:
     CHECK_LOLCAT_EXISTS
-  failed_when:
-    CHECK_LOLCAT_EXISTS.rc not in [0, 1]
-  changed_when: false 
+  ignore_errors: True
 
 - name: install lolcat 
   become: yes

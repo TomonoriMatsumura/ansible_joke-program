@@ -1,4 +1,6 @@
 - hosts: all
+  vars_files:
+    - vars/ruby/install/source/default.yml
 
   roles:
     - ruby/install/source
