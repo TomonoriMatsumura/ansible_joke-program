@@ -2,10 +2,7 @@
   command: cure version
   register:
     CHECK_LOLCAT_EXISTS
-  failed_when:
-    CHECK_LOLCAT_EXISTS.rc not in [0, 1]
-  changed_when: false
-#  ignore_errors: yes
+  ignore_errors: yes
 
 - name: install cureutils
   become: yes
