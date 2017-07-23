@@ -4,6 +4,7 @@
     - vars/pong/default.yml
     - vars/asciiquarium/default.yml
     - vars/cmatrix/default.yml
+    - vars/ruby/install/source/default.yml
 
   roles:
     - role: fortune-mod
@@ -16,6 +17,8 @@
       tags: pong
     - role: cowsay
       tags: cowsay
+    - role: ruby/install/source
+      tags: ruby_install_source
     - role: lolcat
       tags: lolcat
     - role: asciiquarium
