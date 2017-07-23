@@ -3,11 +3,11 @@
   register:
     CHECK_LOLCAT_EXISTS
   failed_when:
-    CHECK_LOLCAT_EXITS.rc not in [0, 1]
+    CHECK_LOLCAT_EXISTS.rc not in [0, 1]
   changed_when: false 
 
 - name: install lolcat 
   become: yes
   shell: gem install lolcat
   when:
-    CHECK_LOLCAT_EXITS.rc not in [0, 1]
+    CHECK_LOLCAT_EXISTS.rc not in [0, 1]
