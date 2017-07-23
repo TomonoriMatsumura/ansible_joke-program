@@ -30,5 +30,5 @@
       tags: beer-mug
 #    - role: nyancat
 #      tags: nyancat
-#    - role: cureutils
-#      tags: cureutils
+    - role: cureutils
+      tags: cureutils
