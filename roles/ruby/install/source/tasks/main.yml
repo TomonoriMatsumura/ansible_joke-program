@@ -11,6 +11,12 @@
     state: directory
     mode: 0755
 
+- name: install Development Tools with yum
+  become: yes
+  yum:
+    name: '@Development Tools'
+    state: present
+
 - name: install required packages to install ruby
   become: yes
   yum:
