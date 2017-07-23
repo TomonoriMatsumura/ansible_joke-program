@@ -1,0 +1,11 @@
+- name: check if cureutils command exists
+  command: cure version
+  register:
+    CHECK_LOLCAT_EXISTS
+  ignore_errors: yes
+
+- name: install cureutils
+  become: yes
+  shell: gem install cureutils
+  when:
+    CHECK_LOLCAT_EXISTS.rc == 2

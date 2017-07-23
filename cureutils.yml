@@ -4,4 +4,4 @@
 
   roles:
     - ruby/install/source
-#    - cureutils
+    - cureutils
