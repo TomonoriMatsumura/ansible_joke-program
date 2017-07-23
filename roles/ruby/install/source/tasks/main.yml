@@ -1,8 +1,18 @@
+- name: test if ruby is installed
+  command:
+    test -f {{ ruby_file_name }}
+  register:
+    CHECK_RUBY_EXITS
+  failed_when:
+    CHECK_RUBY_EXITS.rc not in [0, 1]
+  changed_when: false
+
 - name: delete working directory [/tmp/ruby]
   become: yes
   file:
     path: '{{ work_dir }}' 
     state: absent
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: make working directory [/tmp/ruby]
   become: yes
@@ -10,12 +20,14 @@
     path: '{{ work_dir }}'
     state: directory
     mode: 0755
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: install Development Tools with yum
   become: yes
   yum:
     name: '@Development Tools'
     state: present
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: install required packages to install ruby
   become: yes
@@ -34,53 +46,36 @@
     - openssl-devel
     - readline-devel
     - zlib-devel
-
-- name: test if ruby is installed
-  command:
-    test -f {{ ruby_file_name }}
-  register:
-    ruby_test_vars
-  failed_when:
-    ruby_test_vars.rc not in [0, 1]
-  changed_when: false
-
-- name: test if ruby is downloaded
-  command:
-    test -f "{{ work_dir }}{{ ruby_archive_version }}"
-  register:
-    ruby_src_test_vars
-  failed_when:
-    ruby_test_vars.rc not in [0, 1]
-  changed_when: false
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: download ruby source file
   get_url:
     url: "{{ ruby_url_dir }}/{{ ruby_archive_name }}"
     dest: '{{ work_dir }}'
-  when: ruby_test_vars.rc == 1 and ruby_src_test_vars.rc == 1
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: unarchive ruby source file
   unarchive:
     src: "{{ work_dir }}/{{ ruby_archive_name }}"
     dest: '{{ work_dir }}'
     copy: no
-  when: ruby_test_vars.rc == 1 and ruby_src_test_vars.rc == 1
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: build ruby 1 (configure)
   command: ./configure --disable-install-doc
   args:
     chdir: "{{ work_dir }}/{{ ruby_archive_version }}"
-  when: ruby_test_vars.rc == 1
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: build ruby 2 (make)
   command: make
   args:
     chdir: "{{ work_dir }}/{{ ruby_archive_version }}"
-  when: ruby_test_vars.rc == 1
+  when: CHECK_RUBY_EXITS.rc == 1
 
 - name: install ruby
   become: yes
   command: make install
   args:
     chdir: "{{ work_dir }}/{{ ruby_archive_version }}"
-  when: ruby_test_vars.rc == 1
+  when: CHECK_RUBY_EXITS.rc == 1
