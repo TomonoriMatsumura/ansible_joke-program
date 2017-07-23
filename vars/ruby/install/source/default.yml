@@ -1,3 +1,6 @@
+work_dir: /tmp/ruby
+
+ruby_file_name: /usr/local/bin/ruby
 ruby_url_dir: https://cache.ruby-lang.org/pub/ruby/2.4
 ruby_archive_version: ruby-2.4.1
 ruby_archive_ext: tar.bz2
