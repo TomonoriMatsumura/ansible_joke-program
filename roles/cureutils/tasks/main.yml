@@ -6,6 +6,8 @@
 
 - name: install cureutils
   become: yes
-  shell: gem install cureutils
+  command: gem install cureutils
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   when:
     CHECK_LOLCAT_EXISTS.rc not in [0, 1] 
