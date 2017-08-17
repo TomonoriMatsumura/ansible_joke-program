@@ -6,6 +6,8 @@
 
 - name: install lolcat 
   become: yes
-  shell: gem install lolcat
+  command: gem install lolcat
+  environment:
+    PATH: '{{ ansible_env.PATH }}'
   when:
     CHECK_LOLCAT_EXISTS.rc not in [0, 1]
