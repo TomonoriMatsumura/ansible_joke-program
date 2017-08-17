@@ -1,0 +1,27 @@
+- name: download nyancat archive file
+  become: yes
+  get_url:
+    url: '{{ nyancat_download_url }}' 
+    dest: /tmp
+
+- name: unarchive nyancat archive file
+  become: yes
+  unarchive:
+    src: "/tmp/{{ nyancat_archive_file }}"
+    dest: /tmp
+
+- name: build nyancat
+  become: yes
+  command: make
+  args:
+    chdir: /tmp/{{ nyancat_dir }}/src
+
+- name: add nyancat command on system
+  become: yes
+  command: mv /tmp/{{ nyancat_dir }}/src/nyancat /usr/local/bin/
+
+- name: assign excute permission to nyancat command
+  become: yes
+  file:
+    path: /usr/local/bin/nyancat
+    mode: 0755

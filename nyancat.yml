@@ -1,0 +1,6 @@
+- hosts: all
+  vars_files:
+    - vars/nyancat/default.yml
+
+  roles:
+    - nyancat 

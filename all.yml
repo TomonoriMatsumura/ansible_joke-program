@@ -4,6 +4,7 @@
     - vars/pong/default.yml
     - vars/asciiquarium/default.yml
     - vars/cmatrix/default.yml
+    - vars/nyancat/default.yml
     - vars/ruby/install/source/default.yml
 
   roles:
@@ -31,7 +32,7 @@
 #      tags: pockemonsay
     - role: beer-mug
       tags: beer-mug
-#    - role: nyancat
-#      tags: nyancat
+    - role: nyancat
+      tags: nyancat
     - role: cureutils
       tags: cureutils
